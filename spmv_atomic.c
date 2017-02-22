@@ -39,13 +39,13 @@ void getMulAtomic(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res, int bloc
     float * d_x;
     float * d_y;
 
-    cudaMalloc(&d_coord_row, nnz * sizeof(int));
-    cudaMalloc(&d_coord_col, nnz * sizeof(int));
-    cudaMalloc(&d_A, nnz * sizeof(float));
-    cudaMalloc(&d_x, vdim * sizeof(float));
-    cudaMalloc(&d_y, vdim * sizeof(float));
+    cudaMalloc((void **)&d_coord_row, nnz * sizeof(int));
+    cudaMalloc((void **)&d_coord_col, nnz * sizeof(int));
+    cudaMalloc((void **)&d_A, nnz * sizeof(float));
+    cudaMalloc((void **)&d_x, vdim * sizeof(float));
+    cudaMalloc((void **)&d_y, vdim * sizeof(float));
 
-    // Copy memory from device to host
+    // Copy memory from host to device
     cudaMemcpy(d_coord_row, mat->rIndex, nnz * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(d_coord_col, mat->cIndex, nnz * sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(d_A, mat->val, nnz * sizeof(float), cudaMemcpyHostToDevice);

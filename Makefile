@@ -29,3 +29,6 @@ tar:
 
 untar:
 	tar -xvf spmv_proj.tar
+
+run:
+	./spmv -mat pwtk.mtx -ivec ivec.txt -alg segment -blockSize 1024 -blockNum 10000
